@@ -24,7 +24,7 @@ class WordleApp extends StatelessWidget {
       supportedLocales: const [
         Locale('en', '')
       ],
-      title: AppLocalizations.of(context)!.appTitle,
+      onGenerateTitle: (ctx) => AppLocalizations.of(ctx)!.appTitle,
       theme: lightTheme,
       darkTheme: darkTheme,
       home: const HomeView(),
