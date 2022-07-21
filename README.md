@@ -1,16 +1,7 @@
-# wordle
+# Wordle Knock-Off
 
-A new Flutter project.
+#### How unoriginal
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This is going to be a knockoff version of wordle for learning purposes written in Flutter.
+This project will work across all Flutter based enviornments (Android, iOS, Linux, MacOS, Windows, and Web).
+I am going to work with Bloc and Material 3 based themeing elements.
