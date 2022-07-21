@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wordle/views/home/widgets/keyboard/index.dart';
 import 'package:wordle/views/home/widgets/letter_cube.dart';
 
 class HomeView extends StatelessWidget {
@@ -16,16 +17,29 @@ class HomeView extends StatelessWidget {
         padding: const EdgeInsets.all(
           16
         ),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 5,
-            crossAxisSpacing: 12,
-            mainAxisSpacing: 12
-          ),
-          itemCount: 25,
-          itemBuilder: ((context, index) => 
-            const LetterCube()
-          )
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 5,
+                  crossAxisSpacing: 12,
+                  mainAxisSpacing: 12
+                ),
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 25,
+                itemBuilder: ((context, index) => 
+                  const LetterCube()
+                )
+              ),
+            ),
+            const SizedBox(
+              width: double.infinity,
+              height: 250,
+              child: OnScreenKeyboard(),
+            )
+          ],
         )
       ),
     );
