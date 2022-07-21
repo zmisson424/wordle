@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordle/bloc/bloc/wordle_bloc.dart';
+import 'package:wordle/views/home/widgets/board.dart';
 import 'package:wordle/views/home/widgets/keyboard/index.dart';
-import 'package:wordle/views/home/widgets/letter_cube.dart';
 
 class HomeView extends StatelessWidget {
 
@@ -23,22 +23,11 @@ class HomeView extends StatelessWidget {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            children: [
+            children: const [
               Expanded(
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12
-                  ),
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 25,
-                  itemBuilder: ((context, index) => 
-                    const LetterCube()
-                  )
-                ),
+                child: WordleBoard(),
               ),
-              const SizedBox(
+              SizedBox(
                 width: double.infinity,
                 height: 250,
                 child: OnScreenKeyboard(),

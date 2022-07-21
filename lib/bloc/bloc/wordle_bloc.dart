@@ -9,9 +9,9 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
   }
 
   Future<void> _onLetterKeyPressed(LetterKeyPressed event, Emitter<WordleState> emit) async {
-    // TODO
 
-    print("User has selected a letter");
-    print(event.letter);
+    emit(state.copyWith(
+      fullGuess: state.fullGuess + event.letter,
+    ));
   }
 }
