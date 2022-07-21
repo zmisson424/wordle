@@ -12,6 +12,7 @@ class WordleBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userGuess = context.watch<WordleBloc>().state.fullGuess;
+    final accuracies = context.watch<WordleBloc>().state.guessAccuracy;
 
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -30,6 +31,7 @@ class WordleBoard extends StatelessWidget {
 
         return LetterCube(
           letter: letter,
+          accuracy: accuracies.length > index ? accuracies[index] : null,
         );
       })
     );

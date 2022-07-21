@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wordle/bloc/bloc/wordle_bloc.dart';
+import 'package:wordle/bloc/event/wordle_event.dart';
 
 class EnterKey extends StatelessWidget {
 
@@ -18,7 +21,7 @@ class EnterKey extends StatelessWidget {
           borderRadius: BorderRadius.circular(8)
         ),
         child: InkWell(
-          onTap: () => print("Clicked"),
+          onTap: () => context.read<WordleBloc>().add(SubmitPressed()),
           borderRadius: BorderRadius.circular(8),
           child: Container(
             alignment: Alignment.center,

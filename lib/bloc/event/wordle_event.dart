@@ -21,3 +21,5 @@ class LetterKeyPressed extends WordleEvent {
 }
 
 class BackspacePressed extends WordleEvent {}
+
+class SubmitPressed extends WordleEvent {}
