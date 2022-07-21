@@ -22,9 +22,9 @@ class LetterCube extends StatelessWidget {
         borderRadius: BorderRadius.circular(8)
       ),
       child: letter != null ? Text(
-        letter!,
+        letter!.toUpperCase(),
         style: const TextStyle(
-          fontSize: 20,
+          fontSize: 22,
           fontWeight: FontWeight.bold
         ),
       ): Container(),

@@ -11,9 +11,13 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
 
   Future<void> _onLetterKeyPressed(LetterKeyPressed event, Emitter<WordleState> emit) async {
 
-    emit(state.copyWith(
-      fullGuess: state.fullGuess + event.letter,
-    ));
+    int maxLength = state.currentGuess * 5;
+
+    if(state.fullGuess.length < maxLength){
+      emit(state.copyWith(
+        fullGuess: state.fullGuess + event.letter,
+      ));
+    }
   }
 
   Future<void> _onBackspacePressed(BackspacePressed event, Emitter<WordleState> emit) async {

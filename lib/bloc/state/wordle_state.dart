@@ -4,7 +4,8 @@ class WordleState extends Equatable {
 
   const WordleState({
     this.answer = 'guess',
-    this.fullGuess = ''
+    this.fullGuess = '',
+    this.currentGuess = 1
   });
 
   // The Wordle solution
@@ -13,17 +14,23 @@ class WordleState extends Equatable {
   // User input guesses
   final String fullGuess;
 
+  // Current Guess Row
+  final int currentGuess;
+
   @override
   List<Object> get props => [
     answer,
-    fullGuess
+    fullGuess,
+    currentGuess
   ];
 
   WordleState copyWith({
     String? answer,
-    String? fullGuess
+    String? fullGuess,
+    int? currentGuess
   }) => WordleState(
     answer: answer ?? this.answer,
-    fullGuess: fullGuess ?? this.fullGuess
+    fullGuess: fullGuess ?? this.fullGuess,
+    currentGuess: currentGuess ?? this.currentGuess
   );
 }
