@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wordle/theme/dark_theme.dart';
+import 'package:wordle/theme/light_theme.dart';
 import 'package:wordle/views/home/index.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -23,9 +25,8 @@ class WordleApp extends StatelessWidget {
         Locale('en', '')
       ],
       title: AppLocalizations.of(context)!.appTitle,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: lightTheme,
+      darkTheme: darkTheme,
       home: const HomeView(),
     );
   }
