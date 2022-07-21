@@ -1,0 +1,6 @@
+{
+    "appTitle": "Wordle",
+    "@appTitle": {
+      "description": "Name of the application"
+    }
+}
