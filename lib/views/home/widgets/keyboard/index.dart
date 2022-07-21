@@ -62,7 +62,9 @@ class OnScreenKeyboard extends StatelessWidget {
               return Expanded(
                 child: Padding(
                   padding: EdgeInsets.only(right: padding),
-                  child: KeyboardKey(letter: c),
+                  child: KeyboardKey(
+                    letter: c,
+                  ),
                 ),
               );
             }).toList(),
@@ -84,7 +86,9 @@ class OnScreenKeyboard extends StatelessWidget {
                 return Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(right: padding),
-                    child: KeyboardKey(letter: c),
+                    child: KeyboardKey(
+                      letter: c,
+                    ),
                   ),
                 );
               }).toList(),
@@ -102,7 +106,9 @@ class OnScreenKeyboard extends StatelessWidget {
               return Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(right: 4),
-                  child: KeyboardKey(letter: c),
+                  child: KeyboardKey(
+                    letter: c,
+                  ),
                 ),
               );
             }).toList(),
