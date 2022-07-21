@@ -14,7 +14,10 @@ class LetterKeyPressed extends WordleEvent {
 
   final String letter;
 
+  @override
   List<Object> get props => [
     letter
   ];
 }
+
+class BackspacePressed extends WordleEvent {}
