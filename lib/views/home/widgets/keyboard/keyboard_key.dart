@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordle/bloc/bloc/wordle_bloc.dart';
 import 'package:wordle/bloc/event/wordle_event.dart';
@@ -21,7 +22,11 @@ class KeyboardKey extends StatelessWidget {
         borderRadius: BorderRadius.circular(8)
       ),
       child: InkWell(
-        onTap: () => context.read<WordleBloc>().add(LetterKeyPressed(letter)),
+        onTap: (){
+          HapticFeedback.heavyImpact();
+          context.read<WordleBloc>().add(LetterKeyPressed(letter));
+        },
+        enableFeedback: true,
         borderRadius: BorderRadius.circular(8),
         child: Container(
           alignment: Alignment.center,
