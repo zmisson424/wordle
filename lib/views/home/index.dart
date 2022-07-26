@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordle/bloc/bloc/wordle_bloc.dart';
 import 'package:wordle/views/home/widgets/board.dart';
+import 'package:wordle/views/home/widgets/game_won_dialog.dart';
 import 'package:wordle/views/home/widgets/keyboard/index.dart';
 
 class HomeView extends StatelessWidget {
@@ -24,6 +25,7 @@ class HomeView extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: const [
+              GameOverDialog(),
               Expanded(
                 child: WordleBoard(),
               ),

@@ -23,3 +23,15 @@ class LetterKeyPressed extends WordleEvent {
 class BackspacePressed extends WordleEvent {}
 
 class SubmitPressed extends WordleEvent {}
+
+class GameOver extends WordleEvent {
+
+  const GameOver(this.gameWon);
+
+  final bool gameWon;
+
+  @override
+  List<Object> get props => [
+    gameWon
+  ];
+}

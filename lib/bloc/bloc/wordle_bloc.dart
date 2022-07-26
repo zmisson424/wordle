@@ -8,6 +8,7 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
     on<LetterKeyPressed>(_onLetterKeyPressed);
     on<BackspacePressed>(_onBackspacePressed);
     on<SubmitPressed>(_onSubmitPressed);
+    on<GameOver>(_onGameOver);
   }
 
   Future<void> _onLetterKeyPressed(LetterKeyPressed event, Emitter<WordleState> emit) async {
@@ -40,11 +41,11 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
       // Check Answer
 
       String currentGuess = state.fullGuess.substring(maxLength - 5, maxLength);
-      List<GuessAccuracy> accuracy = []..addAll(state.guessAccuracy);
+      List<GuessAccuracy> accuracy = [...state.guessAccuracy];
 
       // Compare Letters
       for(int i = 0; i < 5; i++){
-        if(currentGuess[i] == state.answer[i]){
+        if(currentGuess[i].toUpperCase() == state.answer[i].toUpperCase()){
           accuracy.add(GuessAccuracy.correct);
         }
         else if(state.answer.contains(currentGuess[i])){
@@ -58,6 +59,26 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
       emit(state.copyWith(
         currentGuess: state.currentGuess + 1,
         guessAccuracy: accuracy
+      ));
+
+      if(currentGuess.toUpperCase() == state.answer.toUpperCase()){
+        add(const GameOver(true));
+      }
+      else if(state.fullGuess.length >= 25){
+        add(const GameOver(false));
+      }
+    }
+  }
+
+  Future<void> _onGameOver(GameOver event, Emitter<WordleState> emit) async {
+    if(event.gameWon){
+      emit(state.copyWith(
+        gameState: GameState.won
+      ));
+    }
+    else{
+      emit(state.copyWith(
+        gameState: GameState.lost
       ));
     }
   }
