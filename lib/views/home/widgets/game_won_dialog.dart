@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordle/bloc/bloc/wordle_bloc.dart';
 import 'package:wordle/bloc/event/wordle_event.dart';
@@ -28,9 +29,13 @@ class GameOverDialog extends StatelessWidget {
         barrierDismissible: false,
         builder: (context) {
           return AlertDialog(
+            title: Text(
+              AppLocalizations.of(context)!.gameOver
+            ),
             content: SizedBox(
               child: Text(
-                winner ? "Winner Winner Chicken Dinner" : "LOSER"
+                winner ? AppLocalizations.of(context)!.wonMessage : 
+                AppLocalizations.of(context)!.lostMessage
               ),
             ),
             actions: [
@@ -39,8 +44,8 @@ class GameOverDialog extends StatelessWidget {
                   onNewGame();
                   Navigator.of(context).pop();
                 }, 
-                child: const Text(
-                  'New Game'
+                child: Text(
+                  AppLocalizations.of(context)!.newGame
                 )
               )
             ],
