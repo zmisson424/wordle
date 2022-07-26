@@ -7,6 +7,7 @@ enum GuessAccuracy {
 }
 
 enum GameState {
+  loading,
   playing,
   won,
   lost
