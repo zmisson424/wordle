@@ -12,12 +12,14 @@ class EnterKey extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    
     return Padding(
       padding: const EdgeInsets.only(
         right: 4
       ),
       child: Material(
-        color: Colors.grey.shade300,
+        color: darkMode ? Colors.grey.shade400 : Colors.grey.shade300,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8)
         ),

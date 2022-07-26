@@ -15,6 +15,8 @@ class LetterCube extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool darkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+
     return AnimatedContainer(
       width: double.infinity,
       height: double.infinity,
@@ -22,10 +24,10 @@ class LetterCube extends StatelessWidget {
       duration: const Duration(milliseconds: 500),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.blueGrey.shade400,
+          color: darkMode ?Colors.grey.shade50 : Colors.blueGrey.shade400,
         ),
         borderRadius: BorderRadius.circular(8),
-        color: _getBlockColor(accuracy)
+        color: _getBlockColor(accuracy, context)
       ),
       child: letter != null ? Text(
         letter!.toUpperCase(),
@@ -37,7 +39,7 @@ class LetterCube extends StatelessWidget {
     );
   }
 
-  Color _getBlockColor(GuessAccuracy? accuracy){
+  Color _getBlockColor(GuessAccuracy? accuracy, BuildContext context){
     switch(accuracy){
       case GuessAccuracy.close:
         return Colors.yellow.shade400;
@@ -46,7 +48,7 @@ class LetterCube extends StatelessWidget {
       case GuessAccuracy.miss:
         return Colors.blueGrey.shade100;
       default:
-        return Colors.white;
+        return Theme.of(context).scaffoldBackgroundColor;
     }
   }
 }
