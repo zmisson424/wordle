@@ -24,9 +24,7 @@ class LetterCube extends StatelessWidget {
           color: Colors.blueGrey.shade400,
         ),
         borderRadius: BorderRadius.circular(8),
-        color: accuracy == GuessAccuracy.correct ? 
-          Colors.green.shade500 : accuracy == GuessAccuracy.close ? 
-          Colors.yellow.shade400 : Colors.transparent
+        color: _getBlockColor(accuracy)
       ),
       child: letter != null ? Text(
         letter!.toUpperCase(),
@@ -36,5 +34,18 @@ class LetterCube extends StatelessWidget {
         ),
       ): Container(),
     );
+  }
+
+  Color _getBlockColor(GuessAccuracy? accuracy){
+    switch(accuracy){
+      case GuessAccuracy.close:
+        return Colors.yellow.shade400;
+      case GuessAccuracy.correct:
+        return Colors.green.shade500;
+      case GuessAccuracy.miss:
+        return Colors.blueGrey.shade100;
+      default:
+        return Colors.transparent;
+    }
   }
 }
