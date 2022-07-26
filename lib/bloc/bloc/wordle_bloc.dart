@@ -5,10 +5,23 @@ import 'package:wordle/bloc/state/wordle_state.dart';
 class WordleBloc extends Bloc<WordleEvent, WordleState> {
 
   WordleBloc() : super( const WordleState()) {
+    on<CreateNewGame>(_onNewGame);
     on<LetterKeyPressed>(_onLetterKeyPressed);
     on<BackspacePressed>(_onBackspacePressed);
     on<SubmitPressed>(_onSubmitPressed);
     on<GameOver>(_onGameOver);
+  }
+
+  Future<void> _onNewGame(CreateNewGame event, Emitter<WordleState> emit) async {
+    emit(
+      state.copyWith(
+        // answer: "check",
+        fullGuess: '',
+        currentGuess: 1,
+        guessAccuracy: const [],
+        gameState: GameState.playing
+      )
+    );
   }
 
   Future<void> _onLetterKeyPressed(LetterKeyPressed event, Emitter<WordleState> emit) async {
