@@ -39,7 +39,10 @@ class HomeView extends StatelessWidget {
           },
           child: BlocBuilder<WordleBloc, WordleState>(
             builder: (context, state){
-
+              if(state.gameState == GameState.loading){
+                // TODO
+                return Container();
+              }
               return Container(
                 width: MediaQuery.of(context).size.width,
                 height: double.infinity,
