@@ -21,17 +21,20 @@ class HomeView extends StatelessWidget {
         body: BlocListener<WordleBloc, WordleState>(
           listener: (context, state){
             if(state.gameState == GameState.won || state.gameState == GameState.lost){
-              showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: ((ctx) => GameOverDialog(
-                  gameWon: state.gameState == GameState.won, 
-                  onNewGame: (){
-                    context.read<WordleBloc>().add(CreateNewGame());
-                    Navigator.of(context).pop();
-                  }
-                ))
-              );
+              // Delay Dialog to allow user to see successful word
+              Future.delayed(const Duration(seconds: 1), (){
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: ((ctx) => GameOverDialog(
+                    gameWon: state.gameState == GameState.won, 
+                    onNewGame: (){
+                      context.read<WordleBloc>().add(CreateNewGame());
+                      Navigator.of(context).pop();
+                    }
+                  ))
+                );
+              });
             }
           },
           child: BlocBuilder<WordleBloc, WordleState>(
