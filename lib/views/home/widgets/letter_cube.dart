@@ -15,10 +15,11 @@ class LetterCube extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
       width: double.infinity,
       height: double.infinity,
       alignment: Alignment.center,
+      duration: const Duration(milliseconds: 500),
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.blueGrey.shade400,
@@ -45,7 +46,7 @@ class LetterCube extends StatelessWidget {
       case GuessAccuracy.miss:
         return Colors.blueGrey.shade100;
       default:
-        return Colors.transparent;
+        return Colors.white;
     }
   }
 }

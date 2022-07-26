@@ -24,6 +24,7 @@ class GameOverDialog extends StatelessWidget {
   }
 
   void _showDialog(bool winner, BuildContext context, Function() onNewGame){
+    Future.delayed(const Duration(seconds: 1), (){
       showDialog(
         context: context, 
         barrierDismissible: false,
@@ -52,5 +53,6 @@ class GameOverDialog extends StatelessWidget {
           );
         }
       );
+    });
   }
 }
