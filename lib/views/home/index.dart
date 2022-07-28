@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordle/bloc/bloc/wordle_bloc.dart';
 import 'package:wordle/bloc/event/wordle_event.dart';
 import 'package:wordle/bloc/state/wordle_state.dart';
-import 'package:wordle/views/home/widgets/board.dart';
+import 'package:wordle/views/home/widgets/board/board.dart';
 import 'package:wordle/views/home/widgets/game_won_dialog.dart';
 import 'package:wordle/views/home/widgets/keyboard/index.dart';
 
