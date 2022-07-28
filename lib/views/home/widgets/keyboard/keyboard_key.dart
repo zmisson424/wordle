@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordle/bloc/bloc/wordle_bloc.dart';
 import 'package:wordle/bloc/event/wordle_event.dart';
 import 'package:wordle/bloc/state/wordle_state.dart';
+import 'package:wordle/theme/colors.dart';
 
 class KeyboardKey extends StatelessWidget {
 
@@ -52,13 +53,13 @@ class KeyboardKey extends StatelessWidget {
   Color _keyColor(bool darkMode){
     switch(keyGuess){
       case GuessAccuracy.correct:
-        return Colors.green.shade500;
+        return darkMode ? AppColors.correctDark : AppColors.correctLight;
       case GuessAccuracy.close:
-        return Colors.yellow.shade400;
+        return darkMode ? AppColors.closeDark : AppColors.closeLight;
       case GuessAccuracy.miss:
-        return Colors.blueGrey.shade500;
+        return darkMode ? AppColors.missDark : AppColors.missLight;
       default:
-        return darkMode ? Colors.grey.shade400 : Colors.grey.shade300;
+        return darkMode ? AppColors.keyboardDark : AppColors.keyboardLight;
     }
   }
 }

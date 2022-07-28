@@ -11,4 +11,6 @@ class AppColors {
   static const Color closeDark = Color(0xFFFFEE58);
   static const Color missLight = Color(0xFF607D8B);
   static const Color missDark = Color(0xFF607D8B);
+  static const Color keyboardLight = Color(0xFFE0E0E0);
+  static const Color keyboardDark = Color(0xFFE0E0E0);
 }
