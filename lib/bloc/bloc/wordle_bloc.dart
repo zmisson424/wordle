@@ -2,10 +2,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordle/bloc/event/wordle_event.dart';
 import 'package:wordle/bloc/state/wordle_state.dart';
 
+import '../../api/dictionary.dart';
+
 class WordleBloc extends Bloc<WordleEvent, WordleState> {
 
   WordleBloc() : super( const WordleState()) {
     on<CreateNewGame>(_onNewGame);
+    on<GameLoading>(_onGameLoading);
     on<LetterKeyPressed>(_onLetterKeyPressed);
     on<BackspacePressed>(_onBackspacePressed);
     on<SubmitPressed>(_onSubmitPressed);
@@ -13,15 +16,23 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
   }
 
   Future<void> _onNewGame(CreateNewGame event, Emitter<WordleState> emit) async {
-    emit(
-      state.copyWith(
-        // answer: "check",
-        fullGuess: '',
-        currentGuess: 1,
-        guessAccuracy: const [],
-        gameState: GameState.playing
-      )
-    );
+    add(GameLoading());
+
+    String? newAnswer = await getRandomWord();
+
+    emit(state.copyWith(
+      answer: newAnswer ?? 'broke',
+      gameState: GameState.playing
+    ));
+  }
+
+  Future<void> _onGameLoading(GameLoading event, Emitter<WordleState> emit) async {
+    emit(state.copyWith(
+      fullGuess: '',
+      currentGuess: 1,
+      guessAccuracy: const [],
+      gameState: GameState.loading
+    ));
   }
 
   Future<void> _onLetterKeyPressed(LetterKeyPressed event, Emitter<WordleState> emit) async {
