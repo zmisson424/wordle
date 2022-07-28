@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wordle/bloc/bloc/wordle_bloc.dart';
 import 'package:wordle/views/home/widgets/keyboard/backspace_key.dart';
 import 'package:wordle/views/home/widgets/keyboard/enter_key.dart';
 import 'package:wordle/views/home/widgets/keyboard/keyboard_key.dart';
@@ -48,6 +50,8 @@ class OnScreenKeyboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final keyGuesses = context.watch<WordleBloc>().state.letterHits;
+    
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -64,6 +68,7 @@ class OnScreenKeyboard extends StatelessWidget {
                   padding: EdgeInsets.only(right: padding),
                   child: KeyboardKey(
                     letter: c,
+                    keyGuess: keyGuesses[c.toUpperCase()],
                   ),
                 ),
               );
@@ -88,6 +93,7 @@ class OnScreenKeyboard extends StatelessWidget {
                     padding: EdgeInsets.only(right: padding),
                     child: KeyboardKey(
                       letter: c,
+                      keyGuess: keyGuesses[c.toUpperCase()],
                     ),
                   ),
                 );
@@ -108,6 +114,7 @@ class OnScreenKeyboard extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 4),
                   child: KeyboardKey(
                     letter: c,
+                    keyGuess: keyGuesses[c.toUpperCase()],
                   ),
                 ),
               );
