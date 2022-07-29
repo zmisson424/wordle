@@ -14,6 +14,26 @@ class WordleAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         AppLocalizations.of(context)!.appTitle
       ),
+      actions: [
+        IconButton(
+          onPressed: () => print('TODO'),
+          icon: const Icon(
+            Icons.help_outline
+          ),
+        ),
+        IconButton(
+          onPressed: () => print('TODO'),
+          icon: const Icon(
+            Icons.leaderboard_outlined
+          ),
+        ),
+        IconButton(
+          onPressed: () => print('TODO'),
+          icon: const Icon(
+            Icons.settings_outlined
+          ),
+        ),
+      ],
     );
   }
   
