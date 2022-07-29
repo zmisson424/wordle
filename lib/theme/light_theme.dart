@@ -36,6 +36,8 @@ ThemeData lightTheme = ThemeData(
 
   // TABS
   tabBarTheme: TabBarTheme(
-    labelColor: Colors.grey.shade900,
+    labelColor: AppColors.primary,
+    unselectedLabelColor: Colors.grey.shade900,
+    indicator: const BoxDecoration()
   )
 );

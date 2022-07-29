@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:wordle/theme/colors.dart';
 import 'package:wordle/views/home/widgets/scoreboard/stats.dart';
 import 'package:wordle/views/home/widgets/scoreboard/times.dart';
 
@@ -48,16 +49,26 @@ class _ScoreboardSheetState extends State<ScoreboardSheet> with SingleTickerProv
               ),
             )
           ),
-          TabBar(
-            controller: _tabController,
-            tabs: [
-              Tab(
-                text: AppLocalizations.of(context)!.topTime,
-              ),
-              Tab(
-                text: AppLocalizations.of(context)!.stats,
-              ),
-            ]
+          Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Colors.blueGrey.shade200,
+                  width: 0.5
+                )
+              )
+            ),
+            child: TabBar(
+              controller: _tabController,
+              tabs: [
+                Tab(
+                  text: AppLocalizations.of(context)!.topTime,
+                ),
+                Tab(
+                  text: AppLocalizations.of(context)!.stats,
+                ),
+              ]
+            ),
           ),
           Expanded(
             child: TabBarView(
