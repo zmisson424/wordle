@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:wordle/views/home/widgets/scoreboard/stats.dart';
 import 'package:wordle/views/home/widgets/scoreboard/times.dart';
 
 class ScoreboardSheet extends StatefulWidget {
@@ -61,9 +62,9 @@ class _ScoreboardSheetState extends State<ScoreboardSheet> with SingleTickerProv
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: [
-                const TopTimes(),
-                Container()
+              children: const [
+                TopTimes(),
+                Stats()
               ]
             ),
           )
