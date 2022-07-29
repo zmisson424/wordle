@@ -31,6 +31,7 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
       fullGuess: '',
       currentGuess: 1,
       guessAccuracy: const [],
+      letterHits: const {},
       gameState: GameState.loading
     ));
   }
@@ -64,25 +65,37 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
     if(state.fullGuess.length == maxLength){
       // Check Answer
 
-      String currentGuess = state.fullGuess.substring(maxLength - 5, maxLength);
+      String currentGuess = state.fullGuess.substring(maxLength - 5, maxLength).toUpperCase();
       List<GuessAccuracy> accuracy = [...state.guessAccuracy];
+      Map<String, GuessAccuracy> keyGuess = {...state.letterHits};
 
       // Compare Letters
       for(int i = 0; i < 5; i++){
         if(currentGuess[i].toUpperCase() == state.answer[i].toUpperCase()){
           accuracy.add(GuessAccuracy.correct);
+
+          if(!keyGuess.containsKey(currentGuess[i])){
+            keyGuess[currentGuess[i]] = GuessAccuracy.correct;
+          }
         }
         else if(state.answer.contains(currentGuess[i])){
           accuracy.add(GuessAccuracy.close);
+          if(!keyGuess.containsKey(currentGuess[i])){
+            keyGuess[currentGuess[i]] = GuessAccuracy.close;
+          }
         }
         else {
           accuracy.add(GuessAccuracy.miss);
+          if(!keyGuess.containsKey(currentGuess[i])){
+            keyGuess[currentGuess[i]] = GuessAccuracy.miss;
+          }
         }
       }
 
       emit(state.copyWith(
         currentGuess: state.currentGuess + 1,
-        guessAccuracy: accuracy
+        guessAccuracy: accuracy,
+        letterHits: keyGuess
       ));
 
       if(currentGuess.toUpperCase() == state.answer.toUpperCase()){

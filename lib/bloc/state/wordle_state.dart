@@ -20,7 +20,8 @@ class WordleState extends Equatable {
     this.fullGuess = '',
     this.currentGuess = 1,
     this.guessAccuracy = const [],
-    this.gameState = GameState.playing
+    this.gameState = GameState.playing,
+    this.letterHits = const {}
   });
 
   // The Wordle solution
@@ -38,13 +39,16 @@ class WordleState extends Equatable {
   // Where the game is at
   final GameState gameState;
 
+  final Map<String, GuessAccuracy> letterHits;
+
   @override
   List<Object> get props => [
     answer,
     fullGuess,
     currentGuess,
     guessAccuracy,
-    gameState
+    gameState,
+    letterHits
   ];
 
   WordleState copyWith({
@@ -52,12 +56,14 @@ class WordleState extends Equatable {
     String? fullGuess,
     int? currentGuess,
     List<GuessAccuracy>? guessAccuracy,
-    GameState? gameState
+    GameState? gameState,
+    Map<String, GuessAccuracy>? letterHits
   }) => WordleState(
     answer: answer ?? this.answer,
     fullGuess: fullGuess ?? this.fullGuess,
     currentGuess: currentGuess ?? this.currentGuess,
     guessAccuracy: guessAccuracy ?? this.guessAccuracy,
-    gameState: gameState ?? this.gameState
+    gameState: gameState ?? this.gameState,
+    letterHits: letterHits ?? this.letterHits
   );
 }

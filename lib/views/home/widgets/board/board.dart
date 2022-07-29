@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordle/bloc/bloc/wordle_bloc.dart';
-import 'letter_cube.dart';
+import './letter_cube.dart';
 
 class WordleBoard extends StatelessWidget {
 
