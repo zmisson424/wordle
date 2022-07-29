@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:wordle/views/home/widgets/scoreboard/index.dart';
 
@@ -26,7 +25,7 @@ class WordleAppBar extends StatelessWidget implements PreferredSizeWidget {
           onPressed: (){
             showModalBottomSheet(
               context: context, 
-              builder: ((context) => ScoreboardSheet())
+              builder: ((context) => const ScoreboardSheet())
             );
           },
           icon: const Icon(

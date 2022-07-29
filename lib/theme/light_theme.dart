@@ -31,5 +31,11 @@ ThemeData lightTheme = ThemeData(
         topRight: Radius.circular(20),
       )
     )
+  ),
+
+
+  // TABS
+  tabBarTheme: TabBarTheme(
+    labelColor: Colors.grey.shade900,
   )
 );
