@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:wordle/views/home/widgets/scoreboard/index.dart';
 
 class WordleAppBar extends StatelessWidget implements PreferredSizeWidget {
 
@@ -22,7 +23,12 @@ class WordleAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         IconButton(
-          onPressed: () => print('TODO'),
+          onPressed: (){
+            showModalBottomSheet(
+              context: context, 
+              builder: ((context) => ScoreboardSheet())
+            );
+          },
           icon: const Icon(
             Icons.leaderboard_outlined
           ),

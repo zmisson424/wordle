@@ -21,5 +21,15 @@ ThemeData darkTheme = ThemeData(
       statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.light
     )
+  ),
+
+  // SHEETS
+  bottomSheetTheme: const BottomSheetThemeData(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(20),
+        topRight: Radius.circular(20),
+      )
+    )
   )
 );
