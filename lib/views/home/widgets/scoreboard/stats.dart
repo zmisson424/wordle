@@ -1,5 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wordle/bloc/cubit/stats_cubit.dart';
 import 'package:wordle/theme/colors.dart';
 
 class Stats extends StatelessWidget {
@@ -10,6 +12,8 @@ class Stats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final stats = context.watch<StatsCubit>().state;
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -19,22 +23,22 @@ class Stats extends StatelessWidget {
               bottom: 12
             ),
             child: Row(
-              children: const [
+              children: [
                 _StatBlock(
                   title: 'Games Won', 
-                  stat: '12'
+                  stat: stats.gamesWon.toStringAsFixed(0)
                 ),
                 _StatBlock(
-                  title: 'Games Played', 
-                  stat: '14'
+                  title: 'Total Games', 
+                  stat: stats.totalGames.toStringAsFixed(0)
                 ),
                 _StatBlock(
                   title: 'Current Streak', 
-                  stat: '2'
+                  stat: stats.currentStreak.toStringAsFixed(0)
                 ),
                 _StatBlock(
                   title: 'Best Streak', 
-                  stat: '4'
+                  stat: stats.bestStreak.toStringAsFixed(0)
                 ),
               ],
             ),

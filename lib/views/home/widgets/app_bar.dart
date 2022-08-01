@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:wordle/bloc/cubit/stats_cubit.dart';
 import 'package:wordle/views/home/widgets/scoreboard/index.dart';
 
 class WordleAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -25,7 +27,10 @@ class WordleAppBar extends StatelessWidget implements PreferredSizeWidget {
           onPressed: (){
             showModalBottomSheet(
               context: context, 
-              builder: ((context) => const ScoreboardSheet())
+              builder: ((context) => BlocProvider(
+                create: (context) => StatsCubit()..fetchStats(),
+                child: const ScoreboardSheet(),
+              ))
             );
           },
           icon: const Icon(
