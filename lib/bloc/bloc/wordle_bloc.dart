@@ -24,7 +24,7 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
     String? newAnswer = await getRandomWord();
 
     int totalGames = await _statsRepository.fetchStat(StatsRepository.kTotalGames) ?? 0;
-    _statsRepository.writeStat(StatsRepository.kTotalGames, totalGames ++);
+    _statsRepository.writeStat(StatsRepository.kTotalGames, totalGames + 1);
 
     emit(state.copyWith(
       answer: newAnswer ?? 'broke',
