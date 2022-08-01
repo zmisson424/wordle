@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordle/bloc/event/wordle_event.dart';
 import 'package:wordle/bloc/state/wordle_state.dart';
+import 'package:wordle/data/stats_repository.dart';
 
 import '../../api/dictionary.dart';
 
@@ -15,10 +16,15 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
     on<GameOver>(_onGameOver);
   }
 
+  final StatsRepository _statsRepository = StatsRepository();
+
   Future<void> _onNewGame(CreateNewGame event, Emitter<WordleState> emit) async {
     add(GameLoading());
 
     String? newAnswer = await getRandomWord();
+
+    int totalGames = await _statsRepository.fetchStat(StatsRepository.kTotalGames) ?? 0;
+    _statsRepository.writeStat(StatsRepository.kTotalGames, totalGames ++);
 
     emit(state.copyWith(
       answer: newAnswer ?? 'broke',

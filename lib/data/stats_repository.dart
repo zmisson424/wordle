@@ -15,24 +15,24 @@ class StatsRepository {
   static const String kFourGameWins = 'GAMES_WON_IN_FOUR';
   static const String kFiveGameWins = 'GAMES_WON_IN_FIVE';
 
-  Future<double?> fetchStat(String key) async {
+  Future<int?> fetchStat(String key) async {
     SharedPreferences prefs =  await SharedPreferences.getInstance();
-    return prefs.getDouble(key);
+    return prefs.getInt(key);
   }
 
-  Future<bool> writeStat(String key, double value) async {
+  Future<bool> writeStat(String key, int value) async {
     SharedPreferences prefs =  await SharedPreferences.getInstance();
-    return prefs.setDouble(key, value);
+    return prefs.setInt(key, value);
   }
 
-  Future<List<double>> fetchDistribution() async {
-    List<double> results = [];
+  Future<List<int>> fetchDistribution() async {
+    List<int> results = [];
     SharedPreferences prefs =  await SharedPreferences.getInstance();
-    results.add(prefs.getDouble(kOneGameWins) ?? 0);
-    results.add(prefs.getDouble(kTwoGameWins) ?? 0);
-    results.add(prefs.getDouble(kThreeGameWins) ?? 0);
-    results.add(prefs.getDouble(kFourGameWins) ?? 0);
-    results.add(prefs.getDouble(kFiveGameWins) ?? 0);
+    results.add(prefs.getInt(kOneGameWins) ?? 0);
+    results.add(prefs.getInt(kTwoGameWins) ?? 0);
+    results.add(prefs.getInt(kThreeGameWins) ?? 0);
+    results.add(prefs.getInt(kFourGameWins) ?? 0);
+    results.add(prefs.getInt(kFiveGameWins) ?? 0);
     return results;
   }
 }

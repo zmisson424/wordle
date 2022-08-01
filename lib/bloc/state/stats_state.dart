@@ -11,19 +11,19 @@ class StatsState extends Equatable {
   });
 
   // Counter of total games played
-  final double totalGames;
+  final int totalGames;
 
   // Counter of total games won
-  final double gamesWon;
+  final int gamesWon;
 
   // Current Streak count
-  final double currentStreak;
+  final int currentStreak;
 
   // Overall best streak
-  final double bestStreak;
+  final int bestStreak;
 
   // Distribution of guess win
-  final List<double> winDistribution;
+  final List<int> winDistribution;
 
   @override
   List<Object> get props => [
@@ -35,11 +35,11 @@ class StatsState extends Equatable {
   ];
 
   StatsState copyWith({
-    double? totalGames,
-    double? gamesWon,
-    double? currentStreak,
-    double? bestStreak,
-    List<double>? winDistribution
+    int? totalGames,
+    int? gamesWon,
+    int? currentStreak,
+    int? bestStreak,
+    List<int>? winDistribution
   }) => StatsState(
     totalGames: totalGames ?? this.totalGames,
     gamesWon: gamesWon ?? this.gamesWon,

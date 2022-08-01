@@ -9,12 +9,12 @@ class StatsCubit extends Cubit<StatsState> {
   StatsCubit() : super(const StatsState());
 
   Future<void> fetchStats() async {
-    double gamesWon = await StatsRepository().fetchStat(StatsRepository.kGamesWon) ?? 0;
-    double totalGames = await StatsRepository().fetchStat(StatsRepository.kTotalGames) ?? 0;
-    double currentStreak = await StatsRepository().fetchStat(StatsRepository.kCurrentStreak) ?? 0;
-    double bestStreak = await StatsRepository().fetchStat(StatsRepository.kBestStreak) ?? 0;
+    int gamesWon = await StatsRepository().fetchStat(StatsRepository.kGamesWon) ?? 0;
+    int totalGames = await StatsRepository().fetchStat(StatsRepository.kTotalGames) ?? 0;
+    int currentStreak = await StatsRepository().fetchStat(StatsRepository.kCurrentStreak) ?? 0;
+    int bestStreak = await StatsRepository().fetchStat(StatsRepository.kBestStreak) ?? 0;
 
-    List<double> winDistribution = await StatsRepository().fetchDistribution();
+    List<int> winDistribution = await StatsRepository().fetchDistribution();
 
     emit(state.copyWith(
       gamesWon: gamesWon,
