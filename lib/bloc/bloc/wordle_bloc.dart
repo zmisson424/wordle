@@ -115,11 +115,25 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
 
   Future<void> _onGameOver(GameOver event, Emitter<WordleState> emit) async {
     if(event.gameWon){
+
+      // Update Game won counter
+      int gamesWon = await _statsRepository.fetchStat(StatsRepository.kGamesWon) ?? 0;
+      _statsRepository.writeStat(StatsRepository.kTotalGames, gamesWon + 1);
+
+      int currentStreak = await  _statsRepository.fetchStat(StatsRepository.kCurrentStreak) ?? 0;
+      int bestStreak = await _statsRepository.fetchStat(StatsRepository.kBestStreak) ?? 0;
+
+      if(currentStreak + 1 > bestStreak){
+        _statsRepository.writeStat(StatsRepository.kBestStreak, currentStreak + 1);
+      }
+      _statsRepository.writeStat(StatsRepository.kCurrentStreak, currentStreak + 1);
+
       emit(state.copyWith(
         gameState: GameState.won
       ));
     }
     else{
+      _statsRepository.writeStat(StatsRepository.kCurrentStreak, 0);
       emit(state.copyWith(
         gameState: GameState.lost
       ));
