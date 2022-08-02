@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:wordle/bloc/bloc/wordle_bloc.dart';
 
 class GameOverDialog extends StatelessWidget {
 
@@ -15,15 +17,23 @@ class GameOverDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final answer = context.watch<WordleBloc>().state.letterHits;
     return AlertDialog(
       title: Text(
         AppLocalizations.of(context)!.gameOver
       ),
       content: SizedBox(
-        child: Text(
-          gameWon ? AppLocalizations.of(context)!.wonMessage : 
-          AppLocalizations.of(context)!.lostMessage
-        ),
+        child: Column(
+          children: [
+            Text(
+              gameWon ? AppLocalizations.of(context)!.wonMessage : 
+              AppLocalizations.of(context)!.lostMessage
+            ),
+            Text(
+              'The answer was $answer'
+            )
+          ],
+        )
       ),
       actions: [
         TextButton(
