@@ -15,7 +15,7 @@ enum GameState {
  
 class WordleState extends Equatable {
 
-  const WordleState({
+  WordleState({
     this.answer = 'guess',
     this.fullGuess = '',
     this.currentGuess = 1,
@@ -40,6 +40,8 @@ class WordleState extends Equatable {
   final GameState gameState;
 
   final Map<String, GuessAccuracy> letterHits;
+
+  final Stopwatch stopwatch = Stopwatch();
 
   @override
   List<Object> get props => [

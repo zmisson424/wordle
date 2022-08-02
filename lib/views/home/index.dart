@@ -7,6 +7,7 @@ import 'package:wordle/views/home/widgets/app_bar.dart';
 import 'package:wordle/views/home/widgets/board/board.dart';
 import 'package:wordle/views/home/widgets/game_won_dialog.dart';
 import 'package:wordle/views/home/widgets/keyboard/index.dart';
+import 'package:wordle/views/home/widgets/wordle_stopwatch.dart';
 
 class HomeView extends StatelessWidget {
 
@@ -55,6 +56,7 @@ class HomeView extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: const [
+                    WordleStopwatch(),
                     Expanded(
                       child: WordleBoard(),
                     ),

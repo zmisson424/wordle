@@ -7,7 +7,7 @@ import '../../api/dictionary.dart';
 
 class WordleBloc extends Bloc<WordleEvent, WordleState> {
 
-  WordleBloc() : super( const WordleState()) {
+  WordleBloc() : super( WordleState()) {
     on<CreateNewGame>(_onNewGame);
     on<GameLoading>(_onGameLoading);
     on<LetterKeyPressed>(_onLetterKeyPressed);
@@ -44,8 +44,11 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
 
   Future<void> _onLetterKeyPressed(LetterKeyPressed event, Emitter<WordleState> emit) async {
 
-    int maxLength = state.currentGuess * 5;
+    if(!state.stopwatch.isRunning){
+      state.stopwatch.start();
+    }
 
+    int maxLength = state.currentGuess * 5;
     if(state.fullGuess.length < maxLength){
       emit(state.copyWith(
         fullGuess: state.fullGuess + event.letter,
