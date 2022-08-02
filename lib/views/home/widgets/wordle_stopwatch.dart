@@ -1,16 +1,40 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordle/bloc/bloc/wordle_bloc.dart';
 
-class WordleStopwatch extends StatelessWidget {
+class WordleStopwatch extends StatefulWidget {
 
   const WordleStopwatch({
     Key? key
   }) : super(key: key);
 
   @override
+  WordleStopwatchState createState()=> WordleStopwatchState();
+}
+
+class WordleStopwatchState extends State<WordleStopwatch> {
+
+  late Timer _timer;
+
+  @override
+  void initState() {
+    _timer = Timer.periodic(const Duration(milliseconds: 500), (timer) { 
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final stopwatch = context.watch<WordleBloc>().state.stopwatch;
+    final timer = context.watch<WordleBloc>().state.timer;
 
     return Container(
       width: double.infinity,
@@ -20,7 +44,7 @@ class WordleStopwatch extends StatelessWidget {
       ),
       alignment: Alignment.center,
       child: Text(
-        "${stopwatch.elapsed.inMinutes}:${stopwatch.elapsed.inSeconds}"
+        timer
       ),
     );
   }

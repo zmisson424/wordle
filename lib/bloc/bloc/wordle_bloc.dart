@@ -2,21 +2,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordle/bloc/event/wordle_event.dart';
 import 'package:wordle/bloc/state/wordle_state.dart';
 import 'package:wordle/data/stats_repository.dart';
-
 import '../../api/dictionary.dart';
 
 class WordleBloc extends Bloc<WordleEvent, WordleState> {
 
-  WordleBloc() : super( WordleState()) {
+  WordleBloc() : super( const WordleState()) {
     on<CreateNewGame>(_onNewGame);
     on<GameLoading>(_onGameLoading);
     on<LetterKeyPressed>(_onLetterKeyPressed);
     on<BackspacePressed>(_onBackspacePressed);
     on<SubmitPressed>(_onSubmitPressed);
     on<GameOver>(_onGameOver);
+    on<StartStopwatch>(_startStopwatch);
+    on<SetStopwatch>(_setStopwatch);
+    on<StopStopwatch>(_stopStopwatch);
   }
 
   final StatsRepository _statsRepository = StatsRepository();
+  final Stopwatch stopwatch = Stopwatch();
+  Stream<int>? stopwatchStream;
 
   Future<void> _onNewGame(CreateNewGame event, Emitter<WordleState> emit) async {
     add(GameLoading());
@@ -44,8 +48,8 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
 
   Future<void> _onLetterKeyPressed(LetterKeyPressed event, Emitter<WordleState> emit) async {
 
-    if(!state.stopwatch.isRunning){
-      state.stopwatch.start();
+    if(!stopwatch.isRunning){
+      add(StartStopwatch());
     }
 
     int maxLength = state.currentGuess * 5;
@@ -117,6 +121,7 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
   }
 
   Future<void> _onGameOver(GameOver event, Emitter<WordleState> emit) async {
+    add(StopStopwatch());
     if(event.gameWon){
 
       // Update Game won counter
@@ -164,5 +169,57 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
         gameState: GameState.lost
       ));
     }
+  }
+
+  Future<void> _startStopwatch(StartStopwatch event, Emitter<WordleState> emit) async {
+    stopwatch.reset();
+
+    stopwatch.start();
+    stopwatchStream = Stream.periodic(const Duration(seconds: 1), (x) {
+      return x;
+    });
+    stopwatchStream?.listen((event) {
+      add(SetStopwatch());
+    });
+  }
+
+  Future<void> _setStopwatch(SetStopwatch event, Emitter<WordleState> emit) async {
+    String result = '';
+
+    int hours = stopwatch.elapsed.inHours;
+    int minutes = stopwatch.elapsed.inMinutes.remainder(60);
+    int seconds = stopwatch.elapsed.inSeconds.remainder(60);
+    if(hours > 9){
+      result = hours.toString();
+    }
+    else if(hours > 0){
+      result = "0$hours:";
+    }
+
+    if(minutes > 0){
+      result = result + minutes.toString();
+    }
+    else{
+      result = "${result}00";
+    }
+
+    if(seconds > 9){
+      result = "$result:$seconds";
+    }
+    else if(seconds > 0){
+      result = "$result:0$seconds";
+    }
+    else{
+      result = "$result:00";
+    }
+
+    emit(state.copyWith(
+      timer: result
+    ));
+  }
+
+  Future<void> _stopStopwatch(StopStopwatch event, Emitter<WordleState> emit) async {
+    stopwatch.stop();
+    stopwatchStream = null;
   }
 }
