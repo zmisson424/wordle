@@ -33,7 +33,7 @@ class HomeView extends StatelessWidget {
                     gameWon: state.gameState == GameState.won,
                     answer: state.answer,
                     onNewGame: (){
-                      ctx.read<WordleBloc>().add(CreateNewGame());
+                      context.read<WordleBloc>().add(CreateNewGame());
                       Navigator.of(context).pop();
                     }
                   ))

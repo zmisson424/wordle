@@ -35,7 +35,6 @@ class WordleStopwatchState extends State<WordleStopwatch> {
   @override
   Widget build(BuildContext context) {
     final timer = context.watch<WordleBloc>().state.timer;
-
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.only(
@@ -44,7 +43,11 @@ class WordleStopwatchState extends State<WordleStopwatch> {
       ),
       alignment: Alignment.center,
       child: Text(
-        timer
+        timer,
+        style: const TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w700
+        ),
       ),
     );
   }

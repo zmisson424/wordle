@@ -42,7 +42,8 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
       currentGuess: 1,
       guessAccuracy: const [],
       letterHits: const {},
-      gameState: GameState.loading
+      gameState: GameState.loading,
+      timer: "00:00"
     ));
   }
 
