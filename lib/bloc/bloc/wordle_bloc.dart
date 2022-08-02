@@ -129,23 +129,23 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
       _statsRepository.writeStat(StatsRepository.kCurrentStreak, currentStreak + 1);
 
       switch(state.currentGuess){
-        case 1:
+        case 0:
           int guessAttempts = await  _statsRepository.fetchStat(StatsRepository.kOneGameWins) ?? 0;
           _statsRepository.writeStat(StatsRepository.kOneGameWins, guessAttempts + 1);
           break;
-        case 2:
+        case 1:
           int guessAttempts = await  _statsRepository.fetchStat(StatsRepository.kTwoGameWins) ?? 0;
           _statsRepository.writeStat(StatsRepository.kTwoGameWins, guessAttempts + 1);
           break;
-        case 3:
+        case 2:
           int guessAttempts = await  _statsRepository.fetchStat(StatsRepository.kThreeGameWins) ?? 0;
           _statsRepository.writeStat(StatsRepository.kThreeGameWins, guessAttempts + 1);
           break;
-        case 4:
+        case 3:
           int guessAttempts = await  _statsRepository.fetchStat(StatsRepository.kFourGameWins) ?? 0;
           _statsRepository.writeStat(StatsRepository.kFourGameWins, guessAttempts + 1);
           break;
-        case 5:
+        case 4:
           int guessAttempts = await  _statsRepository.fetchStat(StatsRepository.kFiveGameWins) ?? 0;
           _statsRepository.writeStat(StatsRepository.kFiveGameWins, guessAttempts + 1);
           break;

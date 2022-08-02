@@ -1,9 +1,8 @@
-import 'package:fl_chart/fl_chart.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordle/bloc/cubit/stats_cubit.dart';
-import 'package:wordle/theme/colors.dart';
-
+import 'package:wordle/views/home/widgets/scoreboard/distribution_graph.dart';
 class Stats extends StatelessWidget {
 
   const Stats({
@@ -43,151 +42,8 @@ class Stats extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            padding: const EdgeInsets.only(
-              bottom: 24,
-              left: 36,
-              right: 36
-            ),
-            width: double.infinity,
-            height: 274,
-            child: BarChart(
-              BarChartData(
-                barGroups: [
-                  BarChartGroupData(
-                    x: 1,
-                    barRods: [
-                      BarChartRodData(
-                        fromY: 0,
-                        toY: 1,
-                        color: AppColors.primary,
-                        width: 32,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        )
-                      ),
-                    ]
-                  ),
-                  BarChartGroupData(
-                    x: 2,
-                    barRods: [
-                      BarChartRodData(
-                        fromY: 0,
-                        toY: 5,
-                        color: AppColors.primary,
-                        width: 32,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        )
-                      ),
-                    ]
-                  ),
-                  BarChartGroupData(
-                    x: 3,
-                    barRods: [
-                      BarChartRodData(
-                        fromY: 0,
-                        toY: 9,
-                        color: AppColors.primary,
-                        width: 32,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        )
-                      ),
-                    ]
-                  ),
-                  BarChartGroupData(
-                    x: 4,
-                    barRods: [
-                      BarChartRodData(
-                        fromY: 0,
-                        toY: 12,
-                        color: AppColors.primary,
-                        width: 32,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        )
-                      ),
-                    ]
-                  ),
-                  BarChartGroupData(
-                    x: 5,
-                    barRods: [
-                      BarChartRodData(
-                        fromY: 0,
-                        toY: 8,
-                        color: AppColors.primary,
-                        width: 32,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        )
-                      ),
-                    ]
-                  ),
-                ],
-                titlesData: FlTitlesData(
-                  show: true,
-                  rightTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: false
-                    )
-                  ),
-                  leftTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      reservedSize: 24,
-                      getTitlesWidget: (value, meta) {
-                        return Text(
-                          value.toInt().toString(),
-                          textAlign: TextAlign.center,
-                        );
-                      },
-                    ),
-                  ),
-                  bottomTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      reservedSize: 24,
-                      getTitlesWidget: (value, meta) {
-                        return Text(
-                          value.toInt().toString(),
-                          textAlign: TextAlign.center,
-                        );
-                      },
-                    )
-                  ),
-                  topTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: false,
-                    )
-                  ),
-                ),
-                borderData: FlBorderData(
-                  show: true,
-                  border: Border.all(
-                    color: Colors.blueGrey.shade500,
-                    width: 1
-                  )
-                ),
-                gridData: FlGridData(
-                  show: true,
-                  drawVerticalLine: false,
-                  getDrawingHorizontalLine: (value) => FlLine(
-                    color: const Color(0xFFececec),
-                    dashArray: null,
-                    strokeWidth: 1,
-                  ),
-                ),
-              ),
-              swapAnimationDuration: const Duration(milliseconds: 150), // Optional
-              swapAnimationCurve: Curves.linear, // Optional
-            ),
-          )
+          stats.gamesWon > 0 ?
+          const DistributionGraph() : Container()
         ],
       ),
     );
@@ -232,11 +88,4 @@ class _StatBlock extends StatelessWidget {
       ),
     );
   }
-}
-
-class _ChartData {
-  final String x;
-  final double y;
-
-  _ChartData(this.x, this.y);
 }

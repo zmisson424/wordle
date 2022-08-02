@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:wordle/bloc/bloc/wordle_bloc.dart';
 
 class GameOverDialog extends StatelessWidget {
 
   const GameOverDialog({
     Key? key,
     required this.gameWon,
-    required this.onNewGame
+    required this.onNewGame,
+    required this.answer
   }) : super(key: key);
 
   final bool gameWon;
+
+  final String answer;
 
   final Function() onNewGame;
 
   @override
   Widget build(BuildContext context) {
-    final answer = context.watch<WordleBloc>().state.letterHits;
     return AlertDialog(
       title: Text(
         AppLocalizations.of(context)!.gameOver

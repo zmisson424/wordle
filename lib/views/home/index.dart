@@ -29,9 +29,10 @@ class HomeView extends StatelessWidget {
                   context: context,
                   barrierDismissible: false,
                   builder: ((ctx) => GameOverDialog(
-                    gameWon: state.gameState == GameState.won, 
+                    gameWon: state.gameState == GameState.won,
+                    answer: state.answer,
                     onNewGame: (){
-                      context.read<WordleBloc>().add(CreateNewGame());
+                      ctx.read<WordleBloc>().add(CreateNewGame());
                       Navigator.of(context).pop();
                     }
                   ))
