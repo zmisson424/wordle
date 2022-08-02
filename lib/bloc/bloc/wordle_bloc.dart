@@ -27,7 +27,7 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
     _statsRepository.writeStat(StatsRepository.kTotalGames, totalGames + 1);
 
     emit(state.copyWith(
-      answer: newAnswer ?? 'broke',
+      answer: newAnswer?.toUpperCase() ?? 'broke',
       gameState: GameState.playing
     ));
   }
@@ -118,7 +118,7 @@ class WordleBloc extends Bloc<WordleEvent, WordleState> {
 
       // Update Game won counter
       int gamesWon = await _statsRepository.fetchStat(StatsRepository.kGamesWon) ?? 0;
-      _statsRepository.writeStat(StatsRepository.kTotalGames, gamesWon + 1);
+      _statsRepository.writeStat(StatsRepository.kGamesWon, gamesWon + 1);
 
       int currentStreak = await  _statsRepository.fetchStat(StatsRepository.kCurrentStreak) ?? 0;
       int bestStreak = await _statsRepository.fetchStat(StatsRepository.kBestStreak) ?? 0;
