@@ -5,62 +5,33 @@ import 'package:wordle/views/home/widgets/keyboard/backspace_key.dart';
 import 'package:wordle/views/home/widgets/keyboard/enter_key.dart';
 import 'package:wordle/views/home/widgets/keyboard/keyboard_key.dart';
 
-const topRowChars = [
-  'Q',
-  'W',
-  'E',
-  'R',
-  'T',
-  'Y',
-  'U',
-  'I',
-  'O',
-  'P'
-];
+const topRowChars = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
 
-const middleRowChars = [
-  'a',
-  's',
-  'd',
-  'f',
-  'g',
-  'h',
-  'j',
-  'k',
-  'l'
-];
+const middleRowChars = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'];
 
-const bottomRowChars = [
-  'sub',
-  'z',
-  'x',
-  'c',
-  'v',
-  'b',
-  'n',
-  'm',
-  'del'
-];
+const bottomRowChars = ['sub', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'del'];
 
 class OnScreenKeyboard extends StatelessWidget {
-
-  const OnScreenKeyboard({
-    Key? key
-  }) : super(key: key);
+  const OnScreenKeyboard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final keyGuesses = context.watch<WordleBloc>().state.letterHits;
-    
-    return SizedBox(
-      width: double.infinity,
+
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        minHeight: 200,
+        maxHeight: 300,
+        maxWidth: 600,
+        minWidth: 300,
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Row(
-            children: topRowChars.map((c){
+            children: topRowChars.map((c) {
               double padding = 4;
-              if(c == topRowChars[topRowChars.length - 1]){
+              if (c == topRowChars[topRowChars.length - 1]) {
                 padding = 0;
               }
               return Expanded(
@@ -75,17 +46,13 @@ class OnScreenKeyboard extends StatelessWidget {
             }).toList(),
           ),
           Padding(
-            padding: const EdgeInsets.only(
-              top: 8,
-              bottom: 8,
-              left: 16,
-              right: 16
-            ),
+            padding:
+                const EdgeInsets.only(top: 8, bottom: 8, left: 16, right: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: middleRowChars.map((c){
+              children: middleRowChars.map((c) {
                 double padding = 4;
-                if(c == middleRowChars[middleRowChars.length - 1]){
+                if (c == middleRowChars[middleRowChars.length - 1]) {
                   padding = 0;
                 }
                 return Expanded(
@@ -101,12 +68,12 @@ class OnScreenKeyboard extends StatelessWidget {
             ),
           ),
           Row(
-            children: bottomRowChars.map((c){
-              if(c == 'del'){
+            children: bottomRowChars.map((c) {
+              if (c == 'del') {
                 return const BackspaceKey();
               }
 
-              if(c == 'sub'){
+              if (c == 'sub') {
                 return const EnterKey();
               }
               return Expanded(

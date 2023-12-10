@@ -54,11 +54,7 @@ class HomeView extends StatelessWidget {
                     Expanded(
                       child: WordleBoard(),
                     ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 250,
-                      child: OnScreenKeyboard(),
-                    )
+                    OnScreenKeyboard(),
                   ],
                 ),
               );
