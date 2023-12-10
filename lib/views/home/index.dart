@@ -10,10 +10,7 @@ import 'package:wordle/views/home/widgets/keyboard/index.dart';
 import 'package:wordle/views/home/widgets/wordle_stopwatch.dart';
 
 class HomeView extends StatelessWidget {
-
-  const HomeView({
-    Key? key
-  }) : super(key: key);
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,40 +19,37 @@ class HomeView extends StatelessWidget {
       child: Scaffold(
         appBar: const WordleAppBar(),
         body: BlocListener<WordleBloc, WordleState>(
-          listener: (context, state){
-            if(state.gameState == GameState.won || state.gameState == GameState.lost){
+          listener: (context, state) {
+            if (state.gameState == GameState.won ||
+                state.gameState == GameState.lost) {
               // Delay Dialog to allow user to see successful word
-              Future.delayed(const Duration(seconds: 1), (){
+              Future.delayed(const Duration(seconds: 1), () {
                 showDialog(
-                  context: context,
-                  barrierDismissible: false,
-                  builder: ((ctx) => GameOverDialog(
-                    gameWon: state.gameState == GameState.won,
-                    answer: state.answer,
-                    onNewGame: (){
-                      context.read<WordleBloc>().add(CreateNewGame());
-                      Navigator.of(context).pop();
-                    }
-                  ))
-                );
+                    context: context,
+                    barrierDismissible: false,
+                    builder: ((ctx) => GameOverDialog(
+                        gameWon: state.gameState == GameState.won,
+                        answer: state.answer,
+                        onNewGame: () {
+                          context.read<WordleBloc>().add(CreateNewGame());
+                          Navigator.of(context).pop();
+                        })));
               });
             }
           },
           child: BlocBuilder<WordleBloc, WordleState>(
-            builder: (context, state){
-              if(state.gameState == GameState.loading){
+            builder: (context, state) {
+              if (state.gameState == GameState.loading) {
                 // TODO
                 return Container();
               }
               return Container(
                 width: MediaQuery.of(context).size.width,
                 height: double.infinity,
-                padding: const EdgeInsets.all(
-                  16
-                ),
-                child: Column(
+                padding: const EdgeInsets.all(16),
+                child: const Column(
                   mainAxisSize: MainAxisSize.max,
-                  children: const [
+                  children: [
                     WordleStopwatch(),
                     Expanded(
                       child: WordleBoard(),
@@ -66,11 +60,11 @@ class HomeView extends StatelessWidget {
                       child: OnScreenKeyboard(),
                     )
                   ],
-                )
+                ),
               );
             },
           ),
-        )
+        ),
       ),
     );
   }
