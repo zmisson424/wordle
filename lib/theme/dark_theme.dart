@@ -4,14 +4,12 @@ import 'colors.dart';
 
 ThemeData darkTheme = ThemeData(
   useMaterial3: true,
-  
+
   // COLORS
   colorScheme: const ColorScheme.dark(
-    primary: AppColors.primary
+    primary: AppColors.primary,
   ),
   scaffoldBackgroundColor: AppColors.backgroundDark,
-
-
 
   // APP BAR
   appBarTheme: const AppBarTheme(
@@ -19,8 +17,8 @@ ThemeData darkTheme = ThemeData(
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarColor: AppColors.backgroundDark,
       statusBarBrightness: Brightness.dark,
-      statusBarIconBrightness: Brightness.light
-    )
+      statusBarIconBrightness: Brightness.light,
+    ),
   ),
 
   // SHEETS
@@ -29,7 +27,7 @@ ThemeData darkTheme = ThemeData(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(20),
         topRight: Radius.circular(20),
-      )
-    )
-  )
+      ),
+    ),
+  ),
 );
