@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wordle/bloc/bloc/wordle_bloc.dart';
 import 'package:wordle/bloc/event/wordle_event.dart';
 import 'package:wordle/bloc/state/wordle_state.dart';
+import 'package:wordle/views/home/widgets/app_bar.dart';
 import 'package:wordle/views/home/widgets/board/board.dart';
 import 'package:wordle/views/home/widgets/game_won_dialog.dart';
 import 'package:wordle/views/home/widgets/keyboard/index.dart';
+import 'package:wordle/views/home/widgets/wordle_stopwatch.dart';
 
 class HomeView extends StatelessWidget {
 
@@ -18,6 +20,7 @@ class HomeView extends StatelessWidget {
     return BlocProvider(
       create: (context) => WordleBloc()..add(CreateNewGame()),
       child: Scaffold(
+        appBar: const WordleAppBar(),
         body: BlocListener<WordleBloc, WordleState>(
           listener: (context, state){
             if(state.gameState == GameState.won || state.gameState == GameState.lost){
@@ -27,7 +30,8 @@ class HomeView extends StatelessWidget {
                   context: context,
                   barrierDismissible: false,
                   builder: ((ctx) => GameOverDialog(
-                    gameWon: state.gameState == GameState.won, 
+                    gameWon: state.gameState == GameState.won,
+                    answer: state.answer,
                     onNewGame: (){
                       context.read<WordleBloc>().add(CreateNewGame());
                       Navigator.of(context).pop();
@@ -52,6 +56,7 @@ class HomeView extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: const [
+                    WordleStopwatch(),
                     Expanded(
                       child: WordleBoard(),
                     ),

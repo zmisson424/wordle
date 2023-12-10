@@ -6,5 +6,8 @@
     "gameOver": "Game Over",
     "wonMessage": "Winner Winner Chicken Dinner",
     "lostMessage": "You lost. Better luck next time.",
-    "newGame": "New Game"
+    "newGame": "New Game",
+    "scoreboard": "Scoreboard",
+    "topTime": "Best Times",
+    "stats": "Statistics"
 }

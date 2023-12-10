@@ -6,10 +6,13 @@ class GameOverDialog extends StatelessWidget {
   const GameOverDialog({
     Key? key,
     required this.gameWon,
-    required this.onNewGame
+    required this.onNewGame,
+    required this.answer
   }) : super(key: key);
 
   final bool gameWon;
+
+  final String answer;
 
   final Function() onNewGame;
 
@@ -20,10 +23,17 @@ class GameOverDialog extends StatelessWidget {
         AppLocalizations.of(context)!.gameOver
       ),
       content: SizedBox(
-        child: Text(
-          gameWon ? AppLocalizations.of(context)!.wonMessage : 
-          AppLocalizations.of(context)!.lostMessage
-        ),
+        child: Column(
+          children: [
+            Text(
+              gameWon ? AppLocalizations.of(context)!.wonMessage : 
+              AppLocalizations.of(context)!.lostMessage
+            ),
+            Text(
+              'The answer was $answer'
+            )
+          ],
+        )
       ),
       actions: [
         TextButton(

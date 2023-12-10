@@ -39,3 +39,9 @@ class GameOver extends WordleEvent {
 class CreateNewGame extends WordleEvent {}
 
 class GameLoading extends WordleEvent {}
+
+class StartStopwatch extends WordleEvent{}
+
+class StopStopwatch extends WordleEvent{}
+
+class SetStopwatch extends WordleEvent{}
