@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primary = Color(0xFF03A9F4);
+  static const Color primary = Color(0xFF2196F3);
 
   static const Color backgroundLight = Color(0xFFFAFAFA);
   static const Color backgroundDark = Color(0xFF201e2b);
@@ -15,5 +15,5 @@ class AppColors {
   static const Color missLight = Color(0xFF607D8B);
   static const Color missDark = Color(0xFF607D8B);
   static const Color keyboardLight = Color(0xFFE0E0E0);
-  static const Color keyboardDark = Color(0xFFE0E0E0);
+  static const Color keyboardDark = Color(0xFF222831);
 }

@@ -5,11 +5,42 @@ import 'package:wordle/views/home/widgets/keyboard/backspace_key.dart';
 import 'package:wordle/views/home/widgets/keyboard/enter_key.dart';
 import 'package:wordle/views/home/widgets/keyboard/keyboard_key.dart';
 
-const topRowChars = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
+const topRowChars = [
+  'Q',
+  'W',
+  'E',
+  'R',
+  'T',
+  'Y',
+  'U',
+  'I',
+  'O',
+  'P',
+];
 
-const middleRowChars = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'];
+const middleRowChars = [
+  'a',
+  's',
+  'd',
+  'f',
+  'g',
+  'h',
+  'j',
+  'k',
+  'l',
+];
 
-const bottomRowChars = ['sub', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'del'];
+const bottomRowChars = [
+  'sub',
+  'z',
+  'x',
+  'c',
+  'v',
+  'b',
+  'n',
+  'm',
+  'del',
+];
 
 class OnScreenKeyboard extends StatelessWidget {
   const OnScreenKeyboard({Key? key}) : super(key: key);
